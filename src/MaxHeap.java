@@ -38,9 +38,13 @@ class MaxHeap<E extends Comparable<E>> implements Heap<E>{
         if (isEmpty()) {
             throw new NullPointerException("El heap está vacío");
         }
+
+        if (size == 1) {
+            return heap.remove(0);
+        }
+
         E temp = heap.get(0);
         heap.set(0, heap.remove(size-1));
-
         descend(0);
 
         return temp;
