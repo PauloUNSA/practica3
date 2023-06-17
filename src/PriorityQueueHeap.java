@@ -1,5 +1,5 @@
 // Implementación de la clase PriorityQueueHeap
-class PriorityQueueHeap<E extends Comparable<E>> {
+class PriorityQueueHeap<E > {
     private MaxHeap<Item<E>> queue;
 
     public PriorityQueueHeap() {

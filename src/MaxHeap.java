@@ -23,7 +23,8 @@ class MaxHeap<E extends Comparable<E>> implements Heap<E>{
         for (int i = 0; i < this.size-1; i++) {
             //aux = 5 y sig =6 -> -1 !>0
             //aux 1ro
-            aux = aux.compareTo(heap.get(i+1))>0 ?heap.get(i+1):aux;
+            //aux =6 y sig =6 -> 0 !> 0
+            if(!(aux.compareTo(heap.get(i+1))<0))aux =heap.get(i+1);
         }
         return aux;
     }
