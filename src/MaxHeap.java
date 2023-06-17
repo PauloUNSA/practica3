@@ -59,11 +59,11 @@ class MaxHeap<E extends Comparable<E>> implements Heap<E>{
             left = heap.get(posLeft).compareTo(heap.get(parent));
             right = heap.get(posRight).compareTo(heap.get(parent));
 
-            if (left>=0) { // caso cuando el hijo de la izquierda es mayor
+            if (left>0) { // caso cuando el hijo de la izquierda es mayor
                 swap(parent, posLeft);
                 parent = posLeft;
             }
-            else if (right>=0) { //caso cuando el hijo de la derecha es mayor
+            else if (right>0) { //caso cuando el hijo de la derecha es mayor
                 swap(right, posRight);
                 parent = posRight;
             }
