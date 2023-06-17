@@ -9,6 +9,13 @@ class MaxHeap<E extends Comparable<E>> implements Heap<E>{
         this.heap = new ArrayList<>();
     }
 
+    public E getRoot() {
+        if (isEmpty()) {
+            throw new NullPointerException("El heap está vacío");
+        }
+        return heap.get(0);
+    }
+
     @Override
     public void insert(E e) {
         heap.add(e);
@@ -19,7 +26,7 @@ class MaxHeap<E extends Comparable<E>> implements Heap<E>{
 
     private void ascend(int i) {
         int parent = (i - 1) / 2;
-        while (i>0 && (heap.get(i).compareTo(heap.get(parent)) <= 0)) {
+        while (i>0 && (heap.get(i).compareTo(heap.get(parent))<0)) {
             swap(i, parent);
             i = parent;
             parent = (i - 1) / 2;
@@ -34,7 +41,7 @@ class MaxHeap<E extends Comparable<E>> implements Heap<E>{
         E temp = heap.get(0);
         heap.set(0, heap.remove(size-1));
 
-        descend(0)
+        descend(0);
 
         return temp;
     }
@@ -45,8 +52,8 @@ class MaxHeap<E extends Comparable<E>> implements Heap<E>{
         int posRight = (parent*2)+2;
 
         while (posLeft<size) {
-            left = heap.get(parent).compareTo(heap.get(posLeft));
-            right = heap.get(parent).compareTo(heap.get(posRight));}
+            left = heap.get(posLeft).compareTo(heap.get(parent));
+            right = heap.get(posRight).compareTo(heap.get(parent));
 
             if (left>=0) { // caso cuando el hijo de la izquierda es mayor
                 swap(parent, posLeft);
@@ -73,5 +80,10 @@ class MaxHeap<E extends Comparable<E>> implements Heap<E>{
     @Override
     public boolean isEmpty() {
         return this.heap.isEmpty();
+    }
+
+    @Override
+    public String toString () {
+        return this.heap.toString();
     }
 }
