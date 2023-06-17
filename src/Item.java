@@ -23,4 +23,9 @@ public class Item<E> implements Comparable<Item<E>> {
         }
         return this.priority-e.getPriority();
     }
+
+    @Override
+    public String toString() {
+        return " "+this.priority+"-"+this.data.toString();
+    }
 }
