@@ -15,13 +15,25 @@ class MaxHeap<E extends Comparable<E>> implements Heap<E>{
         }
         return heap.get(0);
     }
+    public E getEnd() {//menor valor de prioridad (1...5) ->1
+        if (isEmpty()) {
+            throw new NullPointerException("El heap está vacío");
+        }
+        E aux = heap.get(0);
+        for (int i = 0; i < this.size-1; i++) {
+            //aux = 5 y sig =6 -> -1 !>0
+            //aux 1ro
+            aux = aux.compareTo(heap.get(i+1))>0 ?heap.get(i+1):aux;
+        }
+        return aux;
+    }
 
     @Override
     public void insert(E e) {
         heap.add(e);
         size++;
         ascend(size-1);
-               
+        System.out.println(toString());
     }
 
     private void ascend(int i) {
@@ -35,18 +47,11 @@ class MaxHeap<E extends Comparable<E>> implements Heap<E>{
 
     @Override
     public E remove() {
-        if (isEmpty()) {
-            throw new NullPointerException("El heap está vacío");
-        }
-
-        if (size == 1) {
-            return heap.remove(0);
-        }
-
+        if (isEmpty()) throw new NullPointerException("El heap está vacío");
+        if (size == 1) return heap.remove(0);
         E temp = heap.get(0);
         heap.set(0, heap.remove(size-1));
         descend(0);
-
         return temp;
     }
 
@@ -54,11 +59,9 @@ class MaxHeap<E extends Comparable<E>> implements Heap<E>{
         int left, right;
         int posLeft = (parent*2)+1;
         int posRight = (parent*2)+2;
-
         while (posLeft<size) {
             left = heap.get(posLeft).compareTo(heap.get(parent));
             right = heap.get(posRight).compareTo(heap.get(parent));
-
             if (left>0) { // caso cuando el hijo de la izquierda es mayor
                 swap(parent, posLeft);
                 parent = posLeft;
@@ -66,10 +69,8 @@ class MaxHeap<E extends Comparable<E>> implements Heap<E>{
             else if (right>0) { //caso cuando el hijo de la derecha es mayor
                 swap(right, posRight);
                 parent = posRight;
-            }
-            else { //caso cuando ambos hijos son mayores al padre
+            }else //caso cuando ambos hijos son mayores al padre
                 break;
-            }
             posLeft = (parent*2)+1;
             posRight = (parent*2)+2;
         }

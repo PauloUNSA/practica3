@@ -1,5 +1,4 @@
 // Implementación de la clase PriorityQueueHeap
-// Implementación de la clase PriorityQueueHeap
 class PriorityQueueHeap<E extends Comparable<E>> {
     private MaxHeap<Item<E>> queue;
 
@@ -21,7 +20,6 @@ class PriorityQueueHeap<E extends Comparable<E>> {
     }
 
     public E back() {
-        //completar
-        return null;
+        return queue.getEnd().getData();
     }
 }
