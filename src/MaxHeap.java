@@ -26,7 +26,7 @@ class MaxHeap<E extends Comparable<E>> implements Heap<E>{
 
     private void ascend(int i) {
         int parent = (i - 1) / 2;
-        while (i>0 && (heap.get(i).compareTo(heap.get(parent))<0)) {
+        while (i>0 && (heap.get(i).compareTo(heap.get(parent))>0)) {
             swap(i, parent);
             i = parent;
             parent = (i - 1) / 2;
