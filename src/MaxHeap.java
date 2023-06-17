@@ -39,8 +39,29 @@ class MaxHeap<E extends Comparable<E>> implements Heap<E>{
         return temp;
     }
 
-    private void descend (int i) {
-        
+    private void descend (int parent) {
+        int left, right;
+        int posLeft = (parent*2)+1;
+        int posRight = (parent*2)+2;
+
+        while (posLeft<size) {
+            left = heap.get(parent).compareTo(heap.get(posLeft));
+            right = heap.get(parent).compareTo(heap.get(posRight));}
+
+            if (left>=0) { // caso cuando el hijo de la izquierda es mayor
+                swap(parent, posLeft);
+                parent = posLeft;
+            }
+            else if (right>=0) { //caso cuando el hijo de la derecha es mayor
+                swap(right, posRight);
+                parent = posRight;
+            }
+            else { //caso cuando ambos hijos son mayores al padre
+                break;
+            }
+            posLeft = (parent*2)+1;
+            posRight = (parent*2)+2;
+        }
     }
 
     private void swap (int i, int k) {
